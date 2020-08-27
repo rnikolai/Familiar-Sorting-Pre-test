@@ -21,7 +21,7 @@
     border: 1px solid black;
     float: left;
     width: 30%;
-    height: 500px;
+    height: 300px;
     margin: 10px;
 
   }
@@ -35,7 +35,7 @@
 
   .row {
     position: relative;
-    top: 500px;
+    padding-top:30%;
     z-index: 1;
   }
 
@@ -52,11 +52,13 @@
 </style>
 
 <body>
+
   <div class="row">
     <div class="column"></div>
     <div class="column"></div>
     <div class="column"></div>
   </div>
+
 
   <div class="rowim">
     <div id="A1" class='mydiv'>
@@ -114,8 +116,7 @@
     </div>
   </div>
 
-
-
+ 
   <script>
     function randomPosition(ele) {
       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";

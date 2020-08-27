@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<style>
+  .mydiv {
+    position: absolute;
+  }
+
+  .mydivheader {
+    cursor: move;
+  }
+
+  .img {
+    z-index: -1;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .column {
+    border: 1px solid black;
+    float: left;
+    width: 30%;
+    height: 500px;
+    margin: 10px;
+
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .row {
+    position: relative;
+    top: 500px;
+    z-index: 1;
+  }
+
+  .rowim::after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .rowim {
+    position: absolute;
+    z-index: 1;
+  }
+</style>
+
+<body>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+
+  <div class="rowim">
+    <div id="A1" class='mydiv'>
+      <div id="mydivheader" class='mydivheader'>
+        <img class="img" src="items/Train A1.jpg" alt="">
+      </div>
+    </div>
+
+    <div id='A2' class='mydiv'>
+      <div id="mydivheader" class='mydivheader'>
+        <img class="img" src="items/Table A2.jpg" alt="">
+      </div>
+    </div>
+
+    <div id='A3' class='mydiv'>
+      <div id="mydivheader" class='mydivheader'>
+        <img class="img" src="items/Shirt A3.jpg" alt="">
+      </div>
+    </div>
+
+    <div id='B1' class='mydiv'>
+      <div id="mydivheader" class='mydivheader'>
+        <img class="img" src="items/Car B1.jpg" alt="">
+      </div>
+    </div>
+
+    <div id='B2' class='mydiv'>
+      <div id="mydivheader" class='mydivheader'>
+        <img class="img" src="items/Bed B2.jpg" alt="">
+      </div>
+    </div>
+
+    <div id='B3' class='mydiv'>
+      <div id="mydivheader" class='mydivheader'>
+        <img class="img" src="items/Dress B3.jpg" alt="">
+      </div>
+    </div>
+
+    <div id='C1' class='mydiv'>
+      <div id="mydivheader" class='mydivheader'>
+        <img class="img" src="items/Bus C1.jpg" alt="">
+      </div>
+    </div>
+
+    <div id='C2' class='mydiv'>
+      <div id="mydivheader" class='mydivheader'>
+        <img class="img" src="items/Shelf C2.jpg" alt="">
+      </div>
+    </div>
+
+    <div id='C3' class='mydiv'>
+      <div id="mydivheader" class='mydivheader'>
+        <img class="img" src="items/Pants C3.jpg" alt="">
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    function randomPosition(ele) {
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    //Make the DIV element draggagle:
+    dragElement(document.getElementById("A1"));
+    dragElement(document.getElementById("A2"));
+    dragElement(document.getElementById("A3"));
+
+    dragElement(document.getElementById("B1"));
+    dragElement(document.getElementById("B2"));
+    dragElement(document.getElementById("B3"));
+
+    dragElement(document.getElementById("C1"));
+    dragElement(document.getElementById("C2"));
+    dragElement(document.getElementById("C3"));
+
+    function dragElement(elmnt) {
+      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      if (document.getElementById(elmnt.id + "header")) {
+        /* if present, the header is where you move the DIV from:*/
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+      } else {
+        /* otherwise, move the DIV from anywhere inside the DIV:*/
+        elmnt.onmousedown = dragMouseDown;
+      }
+
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      }
+
+      function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+  </script>
+
+</body>
+
+</html>
